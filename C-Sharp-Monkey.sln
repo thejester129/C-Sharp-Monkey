@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1703.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-Sharp-Monkey", "src\C-Sharp-Monkey.csproj", "{4D18D948-6450-4622-B4A8-3FDC565808E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-Sharp-Monkey-Tests", "test\C-Sharp-Monkey-Tests.csproj", "{7A0C1C2A-73BD-4710-8301-CD874632C9E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D18D948-6450-4622-B4A8-3FDC565808E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D18D948-6450-4622-B4A8-3FDC565808E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D18D948-6450-4622-B4A8-3FDC565808E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D18D948-6450-4622-B4A8-3FDC565808E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0C1C2A-73BD-4710-8301-CD874632C9E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0C1C2A-73BD-4710-8301-CD874632C9E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0C1C2A-73BD-4710-8301-CD874632C9E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0C1C2A-73BD-4710-8301-CD874632C9E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE8444CC-F35F-4FE0-BF39-78AEA99E090E}
+	EndGlobalSection
+EndGlobal
