@@ -1,21 +1,19 @@
 ﻿using System;
-namespace C_Sharp_Monkey
+namespace C_Sharp_Monkey;
+public interface ILexer
 {
-    public interface ILexer
+    Token NextToken();
+}
+
+public class Lexer : ILexer
+{
+    public Lexer()
     {
-        Token NextToken();
     }
 
-    public class Lexer : ILexer
+    public Token NextToken()
     {
-        public Lexer()
-        {
-        }
-
-        public Token NextToken()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }
 

@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\C-Sharp-Monkey.csproj" />
+    <ProjectReference Include="../src/C-Sharp-Monkey.csproj" />
   </ItemGroup>
 </Project>
