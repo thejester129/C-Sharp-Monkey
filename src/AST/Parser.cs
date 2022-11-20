@@ -5,6 +5,8 @@ public class Parser
     private List<Token> tokens;
     private Token currentToken;
     private Token nextToken;
+
+    public List<string> Errors { get; private set; } = new List<string>();
     public Parser(List<Token> tokens)
     {
         this.tokens = tokens;
@@ -42,6 +44,7 @@ public class Parser
         switch (currentToken.Type)
         {
             case TokenType.LET: return ParseLetStatement();
+            case TokenType.RETURN: return ParseReturnStatement();
             default: throw new Exception("Not yet implemented :)");
         }
     }
@@ -52,6 +55,7 @@ public class Parser
 
         if (this.nextToken.Type != TokenType.IDENT)
         {
+            Errors.Add("Parsing error: Expected identifier, got " + nextToken.Literal);
             return null;
         }
 
@@ -61,8 +65,25 @@ public class Parser
 
         if (this.nextToken.Type != TokenType.ASSIGN)
         {
+            Errors.Add("Parsing error: Expected assign, got " + nextToken.Literal);
             return null;
         }
+
+        AdvanceToken();
+
+        // TODO skipping expressions
+        // until we encounter semicolon
+        while (this.currentToken.Type != TokenType.SEMICOLON)
+        {
+            AdvanceToken();
+        }
+
+        return statement;
+    }
+
+    private ReturnStatement? ParseReturnStatement()
+    {
+        var statement = new ReturnStatement(this.currentToken.Literal);
 
         AdvanceToken();
 

@@ -36,6 +36,8 @@ public class ParserTests
 
         var output = sut.Parse();
 
+        Assert.IsEmpty(sut.Errors);
+
         Assert.NotNull(output);
 
         Assert.AreEqual(3, output.Statements.Count());
@@ -55,4 +57,47 @@ public class ParserTests
         Assert.AreEqual(expectedName, letStatement.Name.Literal);
         //Assert.Equals(expectedValue, letStatement.Value);
     }
+
+    [Test]
+    public void TestReturnStatements()
+    {
+        var input = new List<Token>{
+            new Token(TokenType.RETURN, "return"),
+            new Token(TokenType.INT, "5"),
+            new Token(TokenType.SEMICOLON, ";"),
+            new Token(TokenType.RETURN, "return"),
+            new Token(TokenType.INT, "10"),
+            new Token(TokenType.SEMICOLON, ";"),
+            new Token(TokenType.RETURN, "return"),
+            new Token(TokenType.INT, "838383"),
+            new Token(TokenType.SEMICOLON, ";"),
+            new Token(TokenType.EOF, ""),
+        };
+
+        var sut = new Parser(input);
+
+        var output = sut.Parse();
+
+        Assert.IsEmpty(sut.Errors);
+
+        Assert.NotNull(output);
+
+        Assert.AreEqual(3, output.Statements.Count());
+
+        TestReturnStatements(output.Statements[0], 5);
+        TestReturnStatements(output.Statements[1], 10);
+        TestReturnStatements(output.Statements[2], 838383);
+    }
+
+    private void TestReturnStatements(IStatement statement, int expectedValue)
+    {
+        Assert.AreEqual(TokenType.RETURN, statement.TokenType);
+        Assert.True(statement is ReturnStatement);
+
+        var returnStatement = statement as ReturnStatement;
+
+        //Assert.Equals(expectedValue, letStatement.Value);
+    }
+
+
 }

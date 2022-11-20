@@ -35,3 +35,22 @@ public class LetStatement : Statement
         this.Value = value;
     }
 }
+
+public class ReturnStatement : Statement
+{
+    public override TokenType TokenType => TokenType.RETURN;
+    public Identifier? Name { get; set; }
+    public IExpression? Value { get; set; }
+
+    public ReturnStatement(string? literal)
+    : base(literal)
+    {
+    }
+
+    public ReturnStatement(string literal, Identifier name, IExpression value)
+    : base(literal)
+    {
+        this.Name = name;
+        this.Value = value;
+    }
+}
