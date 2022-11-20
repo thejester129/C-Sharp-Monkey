@@ -3,10 +3,10 @@ namespace C_Sharp_Monkey
 {
     public class Token
     {
-        public string TokenType { get; private set; }
-        public string Literal { get; private set; }
+        public TokenType TokenType { get; private set; }
+        public string? Literal { get; private set; }
 
-        public Token(string tokenType, string literal)
+        public Token(TokenType tokenType, string? literal)
         {
             this.TokenType = tokenType;
             this.Literal = literal;

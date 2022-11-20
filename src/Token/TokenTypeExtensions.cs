@@ -1,57 +1,86 @@
 using System;
+using System.Text.RegularExpressions;
 namespace C_Sharp_Monkey;
 public static class TokenTypeExtensions
 {
-    public static string ToString(this TokenType tokenType)
+    public static string TypeToString(this TokenType tokenType)
     {
-        switch (tokenType)
-        {
-            case TokenType.ILLEGAL: return "ILLEGAL";
-            case TokenType.EOF: return "EOF";
-            case TokenType.IDENT: return "IDENT"; // add, foobar, x, y, ...
-            case TokenType.INT: return "INT";   // 343456
-            case TokenType.ASSIGN: return ": return";
-            case TokenType.PLUS: return "+";
-            case TokenType.MINUS: return "-";
-            case TokenType.BANG: return "!";
-            case TokenType.ASTERISK: return "*";
-            case TokenType.SLASH: return "/";
-            case TokenType.LT: return "<";
-            case TokenType.GT: return ">";
-            case TokenType.EQ: return ": return: return";
-            case TokenType.NOT_EQ: return "!: return: return";
-            case TokenType.COMMA: return ",";
-            case TokenType.SEMICOLON: return ";";
-            case TokenType.LPAREN: return "(";
-            case TokenType.RPAREN: return ")";
-            case TokenType.LBRACE: return "{";
-            case TokenType.RBRACE: return "}";
-            case TokenType.FUNCTION: return "FUNCTION";
-            case TokenType.LET: return "LET";
-            case TokenType.IF: return "if";
-            case TokenType.ELSE: return "else";
-            case TokenType.RETURN: return "return";
-            case TokenType.TRUE: return "true";
-            case TokenType.FALSE: return "false";
-            default: throw new Exception("Unknown token type: " + tokenType);
-        }
+        return typeDictionary[tokenType];
     }
 
-    public static TokenType ToToken(this string keyword)
+    public static TokenType LiteralToType(this string literal)
+    {
+        if (typeDictionary.Where(t => t.Value == literal).Count() > 0)
+        {
+            return typeDictionary.First(t => t.Value == literal).Key;
+        }
+
+        return TokenType.IDENT;
+    }
+
+    private static Dictionary<TokenType, string> typeDictionary = new Dictionary<TokenType, string>
+    {
+            { TokenType.ILLEGAL,  "ILLEGAL"},
+            { TokenType.EOF,  "EOF"},
+            { TokenType.IDENT,  "IDENT"}, // add, foobar, x, y, ...
+            { TokenType.INT,  "INT"},   // 343456
+            { TokenType.ASSIGN,  "="},
+            { TokenType.PLUS,  "+"},
+            { TokenType.MINUS,  "-"},
+            { TokenType.BANG,  "!"},
+            { TokenType.ASTERISK,  "*"},
+            { TokenType.SLASH,  "/"},
+            { TokenType.LT,  "<"},
+            { TokenType.GT,  ">"},
+            { TokenType.EQ,  "=="},
+            { TokenType.NOT_EQ,  "!="},
+            { TokenType.COMMA,  ","},
+            { TokenType.SEMICOLON,  ";"},
+            { TokenType.LPAREN,  "("},
+            { TokenType.RPAREN,  ")"},
+            { TokenType.LBRACE,  "{"},
+            { TokenType.RBRACE,  "}"},
+            { TokenType.FUNCTION,  "fn"},
+            { TokenType.LET,  "let"},
+            { TokenType.IF,  "if"},
+            { TokenType.ELSE,  "else"},
+            { TokenType.RETURN,  "return"},
+            { TokenType.TRUE,  "true"},
+            { TokenType.FALSE,  "false"},
+    };
+
+    public static bool IsKeyword(this string keyword)
     {
         switch (keyword)
         {
-            case "fn": return TokenType.FUNCTION;
-            case "let": return TokenType.LET;
-            case "true": return TokenType.TRUE;
-            case "false": return TokenType.FALSE;
-            case "if": return TokenType.IF;
-            case "else": return TokenType.ELSE;
-            case "return": return TokenType.RETURN;
-            case "==": return TokenType.EQ;
-            case "!=": return TokenType.NOT_EQ;
-            default: throw new Exception("Unknown keyword: " + keyword);
+            case "fn":
+            case "let":
+            case "true":
+            case "false":
+            case "if":
+            case "else":
+            case "return":
+            case "==":
+            case "!=":
+                return true;
+            default: return false;
         }
+    }
+
+    public static bool IsLetter(this string? keyword)
+    {
+        if (keyword == null)
+            return false;
+        Regex rx = new Regex(@"[a-zA-Z]");
+        return rx.Match(keyword) != Match.Empty;
+    }
+
+    public static bool IsNumber(this string? keyword)
+    {
+        if (keyword == null)
+            return false;
+        Regex rx = new Regex(@"\d");
+        return rx.Match(keyword) != Match.Empty;
     }
 }
 

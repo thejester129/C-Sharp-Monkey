@@ -7,13 +7,6 @@ namespace C_Sharp_Monkey_Tests;
 
 public class Tests
 {
-    private Lexer Sut;
-
-    [SetUp]
-    public void Setup()
-    {
-        Sut = new Lexer();
-    }
 
     [Test]
     public void TestBasicTokens()
@@ -138,9 +131,10 @@ public class Tests
 
     private void EnsureExpectedTokens(string input, List<(TokenType, string)> expectedTokens)
     {
+        var sut = new Lexer(input);
         foreach (var expected in expectedTokens)
         {
-            var nextToken = Sut.NextToken();
+            var nextToken = sut.NextToken();
             var expectedType = expected.Item1;
             var expectedLiteral = expected.Item2;
 
