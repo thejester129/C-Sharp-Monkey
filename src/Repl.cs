@@ -25,9 +25,9 @@ namespace C_Sharp_Monkey
 
                 var nextToken = lexer.NextToken();
 
-                while (nextToken != null && nextToken.TokenType != TokenType.EOF)
+                while (nextToken != null && nextToken.Type != TokenType.EOF)
                 {
-                    Console.WriteLine("Parsed " + nextToken.Literal + " as " + nextToken.TokenType);
+                    Console.WriteLine("Parsed " + nextToken.Literal + " as " + nextToken.Type);
                     nextToken = lexer.NextToken();
                 }
             }

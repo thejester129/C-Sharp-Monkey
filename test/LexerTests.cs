@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace C_Sharp_Monkey_Tests;
 
-public class Tests
+public class LexerTests
 {
 
     [Test]
@@ -138,7 +138,7 @@ public class Tests
             var expectedType = expected.Item1;
             var expectedLiteral = expected.Item2;
 
-            Assert.AreEqual(expectedType, nextToken.TokenType);
+            Assert.AreEqual(expectedType, nextToken.Type);
             Assert.AreEqual(expectedLiteral, nextToken.Literal);
         }
     }
